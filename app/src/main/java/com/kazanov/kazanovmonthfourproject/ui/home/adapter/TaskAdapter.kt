@@ -5,14 +5,15 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.kazanov.kazanovmonthfourproject.databinding.ItemTaskBinding
-import com.kazanov.kazanovmonthfourproject.ui.Task
+import com.kazanov.kazanovmonthfourproject.model.Task
 
 class TaskAdapter : RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
 
     private val data = arrayListOf<Task>()
 
-    fun addTask(task: Task) {
-        data.add(0, task)
+    fun addTasks(task: List<Task>) {
+        data.clear()
+        data.addAll(task)
         notifyDataSetChanged()
     }
 
