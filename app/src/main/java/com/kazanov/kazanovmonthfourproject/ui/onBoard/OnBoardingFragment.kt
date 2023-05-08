@@ -1,22 +1,22 @@
 package com.kazanov.kazanovmonthfourproject.ui.onBoard
 
-import android.R
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import androidx.viewpager2.widget.ViewPager2
+import com.kazanov.kazanovmonthfourproject.data.local.Pref
 import com.kazanov.kazanovmonthfourproject.databinding.FragmentOnBoardingBinding
 import com.kazanov.kazanovmonthfourproject.model.OnBoard
 import com.kazanov.kazanovmonthfourproject.ui.onBoard.adapter.OnBoardingAdapter
-import me.relex.circleindicator.CircleIndicator3
 
 
 class OnBoardingFragment : Fragment() {
 
     lateinit var binding: FragmentOnBoardingBinding
+    private lateinit var pref: Pref
+
 
     override fun onCreateView(
 
@@ -29,6 +29,7 @@ class OnBoardingFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        pref = Pref(requireContext())
         val adapter = OnBoardingAdapter(this::onClick)
         binding.viewPager.adapter = adapter
         binding.indicator.setViewPager(binding.viewPager)
@@ -37,7 +38,7 @@ class OnBoardingFragment : Fragment() {
 
     private fun onClick(onBoard: OnBoard) {
         findNavController().navigateUp()
-
+        pref.saveUserSeen()
     }
 
 }

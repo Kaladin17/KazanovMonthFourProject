@@ -9,7 +9,11 @@
         android:id="@+id/navigation_home"
         android:name="com.kazanov.kazanovmonthfourproject.ui.home.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_navigation_home_to_taskFragment"
+            app:destination="@id/taskFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_dashboard"
@@ -26,7 +30,13 @@
         android:id="@+id/taskFragment"
         android:name="com.kazanov.kazanovmonthfourproject.ui.task.TaskFragment"
         android:label="@string/title_task"
-        tools:layout="@layout/fragment_task" />
+        tools:layout="@layout/fragment_task" >
+        <argument
+            android:name="task"
+            android:defaultValue="@null"
+            app:nullable="true"
+            app:argType="com.kazanov.kazanovmonthfourproject.model.Task"/>
+    </fragment>
     <fragment
         android:id="@+id/navigation_profile"
         android:name="com.kazanov.kazanovmonthfourproject.ui.profile.ProfileFragment"
