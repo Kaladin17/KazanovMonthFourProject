@@ -28,17 +28,17 @@ class TaskFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        arguments.let {
-            navArgs = TaskFragmentArgs.fromBundle(it!!)
+        arguments?.let {
+            navArgs = TaskFragmentArgs.fromBundle(it)
             task = navArgs.task!!
         }
+
         if (task != null){
             binding.etTitle.setText(task.title)
             binding.etDesc.setText(task.desc)
             binding.btnSave.text = "Update"
         } else{
             binding.btnSave.text = "Save"
-
         }
         binding.btnSave.setOnClickListener {
             val data = Task(
@@ -61,28 +61,6 @@ class TaskFragment : Fragment() {
             findNavController().navigateUp()
         }
     }
-
-    /*  private fun save() {
-          val data = Task(
-              title = binding.etTitle.text.toString(),
-              desc = binding.etDesc.text.toString(),
-          )
-          if (data.title?.isEmpty()!! || data.desc?.isEmpty()!!) {
-              Toast.makeText(requireContext(), "Title & desk not be empty!", Toast.LENGTH_SHORT)
-                  .show()
-              return
-          }
-          if (task != null){
-              task.title = data.title
-              task.desc = data.desc
-              App.db.taskDao().update(task)
-          } else {
-              task = Task(title = data.title, desc = data.desc)
-              App.db.taskDao().insert(task)
-          }
-          findNavController().navigateUp()
-      }*/
-
 
     companion object {
         const val TASK_REQUEST = "task.request_key"
